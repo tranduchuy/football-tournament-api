@@ -1,10 +1,10 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { BaseEntity } from 'typeorm';
@@ -22,6 +22,7 @@ export interface ITeam {
 })
 export class TeamEntity extends BaseEntity implements ITeam {
   @PrimaryGeneratedColumn()
+  @ApiProperty()
   id: number;
 
   @Column({
@@ -29,6 +30,7 @@ export class TeamEntity extends BaseEntity implements ITeam {
     type: 'varchar',
     nullable: false,
   })
+  @ApiProperty()
   name: string;
 
   @OneToMany(() => MatchEntity, (match) => match.homeTeam, { eager: false })

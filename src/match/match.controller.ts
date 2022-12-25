@@ -1,6 +1,6 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { IMatch } from 'src/database/entities';
-import { In, Between } from 'typeorm';
+import { Controller, Get, Post, Query } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { Between } from 'typeorm';
 import { GetMatchesReqDto } from './dto/GetMatchesReq.dto';
 import { GetMatchesResDto } from './dto/GetMatchesRes.dto';
 import { MatchService } from './match.service';
@@ -10,6 +10,9 @@ export class MatchController {
   constructor(private matchService: MatchService) {}
 
   @Get()
+  @ApiOkResponse({
+    type: GetMatchesResDto,
+  })
   async getMatches(
     @Query() query: GetMatchesReqDto,
   ): Promise<GetMatchesResDto> {

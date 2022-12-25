@@ -1,6 +1,12 @@
-import { IMatch } from 'src/database/entities';
+import { ApiProperty, ApiExtraModels } from '@nestjs/swagger';
+import { IMatch, MatchEntity } from 'src/database/entities';
 
-export type GetMatchesResDto = {
+export class GetMatchesResDto {
+  @ApiProperty()
   total: number;
+
+  @ApiProperty({
+    type: [MatchEntity]
+  })
   items: IMatch[];
-};
+}
