@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from 'typeorm';
 import { MatchEntity } from './match.entity';
+import { TournamentEntity } from './tournament.entity';
 
 @Entity({
   name: 'teams',
@@ -21,4 +22,7 @@ export class TeamEntity extends BaseEntity {
 
   @OneToMany(() => MatchEntity, (match) => match.awayTeam, { eager: false })
   awayMatches: MatchEntity[];
+
+  @ManyToOne(() => TournamentEntity, (tour) => tour.teams, {eager: false})
+  tournament: TournamentEntity;
 }

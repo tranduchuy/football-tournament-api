@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Env } from 'src/constants/Env';
+import * as path from 'path';
 import { MatchEntity } from './entities/match.entity';
 import { TeamEntity } from './entities/team.entity';
 import { TournamentEntity } from './entities/tournament.entity';
@@ -15,7 +16,7 @@ import { TournamentEntity } from './entities/tournament.entity';
       password: Env.DB_PASSWORD,
       database: Env.DB_NAME,
       entities: [TournamentEntity, TeamEntity, MatchEntity],
-      migrations: ['src/database/migrations/**.ts'],
+      migrations: [path.join(__dirname, 'migrations/**.ts')],
       synchronize: false,
     }),
   ],

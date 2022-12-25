@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { BaseEntity } from './base';
+import { TeamEntity } from './team.entity';
 
 @Entity({
   name: 'tournaments',
@@ -12,4 +13,7 @@ export class TournamentEntity extends BaseEntity {
     name: 'name',
   })
   name: string;
+
+  @OneToMany(() => TeamEntity, (team) => team.tournament, {eager: false})
+  teams?: TeamEntity[];
 }
