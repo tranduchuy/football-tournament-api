@@ -2,6 +2,8 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -40,7 +42,8 @@ export class MatchEntity extends BaseEntity implements IMatch {
   })
   homeTeamScore: number;
 
-  @OneToOne(() => TeamEntity, { eager: true })
+  @ManyToOne(() => TeamEntity, (team) => team.homeMatches, { eager: true })
+  @JoinColumn({ name: 'home_team_id' })
   homeTeam: TeamEntity;
 
   @Column({
@@ -50,7 +53,8 @@ export class MatchEntity extends BaseEntity implements IMatch {
   })
   awayTeamId: number;
 
-  @OneToOne(() => TeamEntity, { eager: true })
+  @ManyToOne(() => TeamEntity, (team) => team.awayMatches, { eager: true })
+  @JoinColumn({ name: 'away_team_id' })
   awayTeam: TeamEntity;
 
   @Column({
@@ -63,7 +67,7 @@ export class MatchEntity extends BaseEntity implements IMatch {
 
   @Column({
     name: 'date',
-    type: 'date',
+    type: 'timestamp',
     nullable: false,
   })
   date: Date;

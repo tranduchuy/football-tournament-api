@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -37,5 +38,6 @@ export class TeamEntity extends BaseEntity implements ITeam {
   awayMatches: MatchEntity[];
 
   @ManyToOne(() => TournamentEntity, (tour) => tour.teams, { eager: false })
+  @JoinColumn({ name: 'tournament_id' })
   tournament?: TournamentEntity;
 }
