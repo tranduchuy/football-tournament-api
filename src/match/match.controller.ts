@@ -1,6 +1,8 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
 import { Between } from 'typeorm';
+import { GetDaysHasMatchReqDto } from './dto/GetDaysHasMatchesReq.dto';
+import { GetDaysHasMatchResDto } from './dto/GetDaysHasMatchesRes.dto';
 import { GetMatchesReqDto } from './dto/GetMatchesReq.dto';
 import { GetMatchesResDto } from './dto/GetMatchesRes.dto';
 import { MatchService } from './match.service';
@@ -34,5 +36,21 @@ export class MatchController {
     });
 
     return data;
+  }
+
+  @Get('/count')
+  @ApiOkResponse({
+    type: [GetDaysHasMatchResDto],
+  })
+  async countMatchByDays(@Query() query: GetDaysHasMatchReqDto) {
+    const fromDate = parseInt(query.fromDate, 10);
+    const toDate = parseInt(query.toDate, 10);
+
+    const items = await this.matchService.daysHasMatches(
+      new Date(fromDate * 1000),
+      new Date(toDate * 1000),
+    );
+
+    return items;
   }
 }

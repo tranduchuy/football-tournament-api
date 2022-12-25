@@ -6,7 +6,7 @@ export class GetMatchesResDto {
   total: number;
 
   @ApiProperty({
-    type: [MatchEntity]
+    type: [MatchEntity],
   })
   items: IMatch[];
 }

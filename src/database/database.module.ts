@@ -18,6 +18,7 @@ import { TournamentEntity } from './entities/tournament.entity';
       entities: [TournamentEntity, TeamEntity, MatchEntity],
       migrations: [path.join(__dirname, 'migrations/**.ts')],
       synchronize: false,
+      logging: true,
       timezone: 'Z',
     }),
   ],
