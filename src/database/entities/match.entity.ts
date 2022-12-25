@@ -5,12 +5,23 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { TeamEntity } from './team.entity';
+import { ITeam, TeamEntity } from './team.entity';
+
+export interface IMatch {
+  id: number;
+  homeTeamId: number;
+  awayTeamId: number;
+  date: Date;
+  homeTeamScore: number;
+  awayTeamScore: number;
+  homeTeam: ITeam;
+  awayTeam: ITeam;
+}
 
 @Entity({
   name: 'matches',
 })
-export class MatchEntity extends BaseEntity {
+export class MatchEntity extends BaseEntity implements IMatch {
   @PrimaryGeneratedColumn()
   id: number;
 

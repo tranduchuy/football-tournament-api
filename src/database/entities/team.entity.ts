@@ -1,12 +1,25 @@
-import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { BaseEntity } from 'typeorm';
 import { MatchEntity } from './match.entity';
-import { TournamentEntity } from './tournament.entity';
+import { ITournament, TournamentEntity } from './tournament.entity';
+
+export interface ITeam {
+  id: number;
+  name: string;
+  tournament?: ITournament;
+}
 
 @Entity({
   name: 'teams',
 })
-export class TeamEntity extends BaseEntity {
+export class TeamEntity extends BaseEntity implements ITeam {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,6 +36,6 @@ export class TeamEntity extends BaseEntity {
   @OneToMany(() => MatchEntity, (match) => match.awayTeam, { eager: false })
   awayMatches: MatchEntity[];
 
-  @ManyToOne(() => TournamentEntity, (tour) => tour.teams, {eager: false})
-  tournament: TournamentEntity;
+  @ManyToOne(() => TournamentEntity, (tour) => tour.teams, { eager: false })
+  tournament?: TournamentEntity;
 }
