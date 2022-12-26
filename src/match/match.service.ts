@@ -14,11 +14,7 @@ export class MatchService {
   constructor(
     @InjectRepository(MatchEntity)
     private matchRepo: Repository<MatchEntity>,
-  ) {
-    this.daysHasMatches(new Date(2022, 11, 27), new Date(2022, 11, 28, 1)).then(
-      (items) => console.log(items),
-    );
-  }
+  ) {}
 
   async findAll(condition: FindManyOptions<MatchEntity>): Promise<IMatch[]> {
     return this.matchRepo.find(condition);
