@@ -2,6 +2,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InitDB1671934469550 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    // `teams` table
     await queryRunner.query(`
         create table if not exists hometest.teams
         (
@@ -12,6 +13,7 @@ export class InitDB1671934469550 implements MigrationInterface {
         )
     `);
 
+    // `tournaments` table
     await queryRunner.query(`create table if not exists hometest.tournaments
     (
         deleted_at datetime(6)                              null,
@@ -22,6 +24,7 @@ export class InitDB1671934469550 implements MigrationInterface {
         name       varchar(255)                             not null
     )`);
 
+    // `matches` table
     await queryRunner.query(`create table if not exists hometest.matches
     (
         id              int auto_increment
@@ -33,14 +36,17 @@ export class InitDB1671934469550 implements MigrationInterface {
         date            datetime      not null
     )`);
 
+    // add foreign key constrains `home_team_id` to `matches`
     await queryRunner.query(`alter table hometest.matches
     add constraint matches_home_team__fk
         foreign key (home_team_id) references teams (id)`);
 
+    // add foreign key constrains `away_team_id` to `matches`
     await queryRunner.query(`alter table hometest.matches
     add constraint matches_away_team__fk
         foreign key (away_team_id) references teams (id)`);
 
+    // add foreign key constrains `tournament_id` to `teams`
     await queryRunner.query(`alter table hometest.teams
     add constraint teams_belongs_to__fk
         foreign key (tournament_id) references tournaments (id)`);

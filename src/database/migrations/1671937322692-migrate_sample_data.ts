@@ -4,6 +4,7 @@ import * as path from 'path';
 
 export class migrateSampleData1671937322692 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    // read sql and execute it
     await queryRunner.query(
       fs.readFileSync(path.join(__dirname, 'data/tournaments.sql')).toString(),
     );
@@ -18,6 +19,7 @@ export class migrateSampleData1671937322692 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    // remove all records
     await queryRunner.query('DELETE FROM hometest.matches');
     await queryRunner.query('DELETE FROM hometest.teams;');
     await queryRunner.query('DELETE FROM hometest.tournaments');

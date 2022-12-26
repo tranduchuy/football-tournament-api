@@ -18,6 +18,7 @@ export class MatchController {
   async getMatches(
     @Query() query: GetMatchesReqDto,
   ): Promise<GetMatchesResDto> {
+    // parse value from query (string) to number
     const limit = parseInt(query.limit || '10', 10);
     const page = parseInt(query.page || '0', 10);
     const fromDate = parseInt(query.fromDate, 10);
@@ -27,9 +28,10 @@ export class MatchController {
       skip: page * limit,
       take: limit,
       where: {
+        // convert unix to miliseconds (x * 1000)
         date: Between(new Date(fromDate * 1000), new Date(toDate * 1000)),
       },
-      relations: ['homeTeam', 'awayTeam'],
+      relations: ['homeTeam', 'awayTeam'], // eager load team entites
       order: {
         date: 'ASC',
       },
@@ -43,6 +45,7 @@ export class MatchController {
     type: [GetDaysHasMatchResDto],
   })
   async countMatchByDays(@Query() query: GetDaysHasMatchReqDto) {
+    // parse value from query (string) to number
     const fromDate = parseInt(query.fromDate, 10);
     const toDate = parseInt(query.toDate, 10);
 
