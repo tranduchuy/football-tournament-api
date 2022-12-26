@@ -14,3 +14,8 @@
 ## API document
 After start server then access: http://localhost:3000/api
 Note: 3000 is the port you set in .env file
+
+
+## Live version
+1. Backend api: http://128.199.165.172:3000
+2. API Document: http://128.199.165.172:3000/api
