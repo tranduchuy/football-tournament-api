@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Env } from 'src/constants/Env';
+import { Env } from '../constants/env';
 import * as path from 'path';
 import { MatchEntity } from './entities/match.entity';
 import { TeamEntity } from './entities/team.entity';

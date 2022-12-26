@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Pagination } from 'src/constants/type';
-import { IMatch, MatchEntity } from 'src/database/entities';
+import { Pagination } from '../constants/type';
+import { IMatch, MatchEntity } from '../database/entities';
 import { FindManyOptions, getManager, Repository } from 'typeorm';
 
 export type DaysHasMatches = {
@@ -31,7 +31,7 @@ export class MatchService {
    */
   async findAllWithCount(
     condition: FindManyOptions<MatchEntity>,
-  ): Promise<Pagination<MatchEntity>> {
+  ): Promise<Pagination<IMatch>> {
     const [items, total] = await this.matchRepo.findAndCount(condition);
 
     return {

@@ -1,5 +1,5 @@
-import { ApiProperty, ApiExtraModels } from '@nestjs/swagger';
-import { IMatch, MatchEntity } from 'src/database/entities';
+import { ApiProperty } from '@nestjs/swagger';
+import { IMatch, MatchEntity } from '../../database/entities';
 
 export class GetMatchesResDto {
   @ApiProperty()

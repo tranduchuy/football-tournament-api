@@ -11,8 +11,6 @@ import { ITeam, TeamEntity } from './team.entity';
 
 export interface IMatch {
   id: number;
-  homeTeamId: number;
-  awayTeamId: number;
   date: Date;
   homeTeamScore: number;
   awayTeamScore: number;
@@ -29,13 +27,6 @@ export class MatchEntity extends BaseEntity implements IMatch {
   id: number;
 
   @Column({
-    name: 'home_team_id',
-    nullable: false,
-    type: 'int',
-  })
-  homeTeamId: number;
-
-  @Column({
     name: 'home_team_score',
     nullable: false,
     type: 'int',
@@ -48,13 +39,6 @@ export class MatchEntity extends BaseEntity implements IMatch {
   @JoinColumn({ name: 'home_team_id' })
   @ApiProperty()
   homeTeam: TeamEntity;
-
-  @Column({
-    name: 'away_team_id',
-    nullable: false,
-    type: 'int',
-  })
-  awayTeamId: number;
 
   @ManyToOne(() => TeamEntity, (team) => team.awayMatches, { eager: true })
   @JoinColumn({ name: 'away_team_id' })

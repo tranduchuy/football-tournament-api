@@ -1,17 +1,20 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
+import { MatchRelations } from '../database/constants';
 import { Between } from 'typeorm';
-import { GetDaysHasMatchReqDto } from './dto/GetDaysHasMatchesReq.dto';
-import { GetDaysHasMatchResDto } from './dto/GetDaysHasMatchesRes.dto';
-import { GetMatchesReqDto } from './dto/GetMatchesReq.dto';
-import { GetMatchesResDto } from './dto/GetMatchesRes.dto';
+import {
+  GetDaysHasMatchReqDto,
+  GetDaysHasMatchResDto,
+  GetMatchesReqDto,
+  GetMatchesResDto,
+} from './dto';
 import { MatchService } from './match.service';
 
 @Controller('match')
 export class MatchController {
   constructor(private matchService: MatchService) {}
 
-  @Get()
+  @Get('/')
   @ApiOkResponse({
     type: GetMatchesResDto,
   })
@@ -31,7 +34,7 @@ export class MatchController {
         // convert unix to miliseconds (x * 1000)
         date: Between(new Date(fromDate * 1000), new Date(toDate * 1000)),
       },
-      relations: ['homeTeam', 'awayTeam'], // eager load team entites
+      relations: [MatchRelations.awayTeam, MatchRelations.homeTeam], // eager load team entites
       order: {
         date: 'ASC',
       },
