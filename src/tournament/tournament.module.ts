@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TournamentEntity } from 'src/database/entities';
+import { TournamentEntity } from '../database/entities';
 import { TournamentService } from './tournament.service';
 
 @Module({
