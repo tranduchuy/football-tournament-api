@@ -16,6 +16,7 @@ export interface IMatch {
   awayTeamScore: number;
   homeTeam: ITeam;
   awayTeam: ITeam;
+  status: string;
 }
 
 @Entity({
@@ -61,4 +62,12 @@ export class MatchEntity extends BaseEntity implements IMatch {
   })
   @ApiProperty()
   date: Date;
+
+  @Column({
+    name: 'status',
+    type: 'varchar',
+    nullable: false,
+  })
+  @ApiProperty()
+  status: string;
 }

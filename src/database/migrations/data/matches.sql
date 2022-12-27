@@ -1,4 +1,4 @@
-insert into hometest.matches (id, home_team_id, away_team_id, home_team_score, away_team_score, date)
+insert into matches (id, home_team_id, away_team_id, home_team_score, away_team_score, date)
 values  (1, 10, 4, 0, 0, '2022-12-26 12:30:00'),
         (2, 19, 7, 0, 0, '2022-12-26 15:00:00'),
         (3, 13, 3, 0, 0, '2022-12-26 15:00:00'),

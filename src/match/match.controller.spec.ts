@@ -46,6 +46,7 @@ describe('MatchController', () => {
             id: 1,
             name: 'Chelsea',
           },
+          status: 'FT',
           awayTeamScore: 0,
           date: new Date(2022, 11, 26),
           id: 2,

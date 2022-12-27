@@ -20,8 +20,8 @@ export class migrateSampleData1671937322692 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     // remove all records
-    await queryRunner.query('DELETE FROM hometest.matches');
-    await queryRunner.query('DELETE FROM hometest.teams;');
-    await queryRunner.query('DELETE FROM hometest.tournaments');
+    await queryRunner.query('DELETE FROM matches');
+    await queryRunner.query('DELETE FROM teams;');
+    await queryRunner.query('DELETE FROM tournaments');
   }
 }

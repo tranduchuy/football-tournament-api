@@ -1,4 +1,4 @@
-insert into hometest.teams (id, name, tournament_id)
+insert into teams (id, name, tournament_id)
 values  (1, 'Arsenal', 1),
         (2, 'Manchester City', 1),
         (3, 'Newcastle United', 1),

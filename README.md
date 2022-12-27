@@ -15,6 +15,13 @@
 After start server then access: http://localhost:3000/api
 Note: 3000 is the port you set in .env file
 
+## Run test
+### unit test
+`yarn test`
+
+### e2e test
+`yarn test:e2e`
+
 
 ## Live version
 1. Backend api: http://128.199.165.172:3000

@@ -26,6 +26,7 @@ export class MatchController {
     const page = parseInt(query.page || '0', 10);
     const fromDate = parseInt(query.fromDate, 10);
     const toDate = parseInt(query.toDate, 10);
+    const { sortDirection } = query;
 
     const data = await this.matchService.findAllWithCount({
       skip: page * limit,
@@ -36,7 +37,7 @@ export class MatchController {
       },
       relations: [MatchRelations.awayTeam, MatchRelations.homeTeam], // eager load team entites
       order: {
-        date: 'ASC',
+        date: sortDirection || 'ASC',
       },
     });
 
